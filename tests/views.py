@@ -14,10 +14,10 @@ def test_upload(request):
     elif request.method == "POST":
         nLogin = request.POST.get('login', '')
         nPassword = request.POST.get('password', '')
-        print nLogin, nPassword
+        #print nLogin, nPassword
         user = User.objects.filter(login=nLogin, password=nPassword)
         if user:
-            print user
+            #print user
 #            print request.POST
             nTitle = request.POST.get("title")
             test_old = user[0].test_set.filter(title=nTitle)
@@ -45,7 +45,7 @@ def test_upload(request):
             default_storage.save("test_files/%s/%s"%(test_new.id,answers_xml.name), answers_xml)
             return HttpResponse("OK")
         else:
-            print "ERROR:User does not exist"
+            #print "ERROR:User does not exist"
             return HttpResponse("ERROR:User does not exist")
         
 def results_upload(request):
@@ -77,9 +77,9 @@ def results_upload(request):
         else:
             return HttpResponse("ERROR:Use POST")
     except:
-        print 'exception'
-        print sys.exc_info()
-        raise
+#        print 'exception'
+#        print sys.exc_info()
+#        raise
         return HttpResponse("ERROR: Unhandled exception, contact administrator")
 
 def test_list(request):
@@ -141,7 +141,7 @@ def questions_download(request):
     test_id = request.POST.get("test-id")
     test = get_object_or_404(Test, id_unq=test_id)
     if not test:
-        print 'ERROR: Test does not exist'
+#        print 'ERROR: Test does not exist'
         return HttpResponse("ERROR: Test does not exist")
         
 
@@ -153,9 +153,9 @@ def questions_download(request):
             if len(user)>0 and user[0].id == test.user.id:
                 send = True
             else:
-                print user[0].id
-                print test.user.id
-                print 'ERROR: User does not exist'
+#                print user[0].id
+#                print test.user.id
+#                print 'ERROR: User does not exist'
                 return HttpResponse("ERROR: User does not exist")
         else:# olpc app, test with password
             test_pass = request.POST.get("test-password", '')
@@ -163,11 +163,11 @@ def questions_download(request):
                 user_name = request.POST.get("user-name", '')
                 testuser, created = TestUser.objects.get_or_create(user_id_unq=user_name, test_id_unq=test_id)
                 if not created:
-                    print 'Test requested again'
+#                    print 'Test requested again'
                     return HttpResponse("ERROR")
                 send = True
             else:
-                print 'ERROR: Wrong test password'
+#                print 'ERROR: Wrong test password'
                 return HttpResponse("ERROR")
     else:
         send = True
@@ -189,12 +189,12 @@ def results_list(request):
     user_login = request.POST.get("login", '')
     user_pass = request.POST.get("password", '')
     if not test_id or not user_login or not user_pass:
-        print 'ERROR: login, test-id and password required'
+#        print 'ERROR: login, test-id and password required'
         return HttpResponse("ERROR: login, test-id and password required")
     
     test = Test.objects.filter(id_unq=test_id)
     if not test:
-        print 'ERROR: Test does not exist'
+#        print 'ERROR: Test does not exist'
         return HttpResponse("ERROR: Test does not exist")
 
     test = test[0]
@@ -202,14 +202,14 @@ def results_list(request):
     if len(user) > 0 and user[0].id == test.user.id:
         send = True
     else:
-        print 'ERROR: User does not exist'
+#        print 'ERROR: User does not exist'
         return HttpResponse("ERROR: User does not exist")
     
     if send:
         results = Result.objects.filter(test_id_unq=test_id)
         return render_to_response('results_list.html', {'results': results})
     else:
-        print 'ERROR: Couldnt find test results'
+#        print 'ERROR: Couldnt find test results'
         return HttpResponse("ERROR: No test results")
     
 def user_answers_download(request):
@@ -223,12 +223,12 @@ def user_answers_download(request):
         user_pass = request.POST.get("password", '')
         results_id = request.POST.get("result-id", '')
         if not test_id or not user_login or not user_pass or not user_id:
-            print 'ERROR: login, test-id and password required'
+#            print 'ERROR: login, test-id and password required'
             return HttpResponse("ERROR: login, test-id and password required")
         
         user = User.objects.filter(login=user_login, password=user_pass)
         if len(user) != 1:
-            print 'ERROR: User does not exist'
+#            print 'ERROR: User does not exist'
             return HttpResponse("ERROR: User does not exist")
         user = user[0]
         
@@ -240,8 +240,8 @@ def user_answers_download(request):
         response["Content-Length"] = os.path.getsize(results_filename)
         return response
     except:
-        raise
-        print 'ERROR: Couldnt find test answers'
+#        raise
+#        print 'ERROR: Couldnt find test answers'
         return HttpResponse("ERROR: No test answers")
 
 
@@ -254,7 +254,7 @@ def answers_download(request):
     test_id = request.POST.get("test-id")
     test = Test.objects.filter(id_unq=test_id)
     if not test:
-        print 'ERROR: Test does not exist'
+#        print 'ERROR: Test does not exist'
         return HttpResponse("ERROR: Test does not exist")
     test = test[0]
         
@@ -266,14 +266,14 @@ def answers_download(request):
             if len(user)>0 and user[0].id == test.user.id:
                 send = True
             else:
-                print 'ERROR: User does not exist'
+#                print 'ERROR: User does not exist'
                 return HttpResponse("ERROR: User does not exist")
         else:
             test_pass = request.POST.get("test-password", '')
             if test.password == test_pass:
                 send = True
             else:
-                print 'ERROR: Wrong test password'
+#                print 'ERROR: Wrong test password'
                 return HttpResponse("ERROR")
     else:
         send = True
