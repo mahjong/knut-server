@@ -1,0 +1,12 @@
+\select@language {polish}
+\contentsline {chapter}{\numberline {1}Opis URL/API, \IeC {\'s}cie\IeC {\.z}ek zasob\IeC {\'o}w i sposobu komunikacji z serwerem}{3}{chapter.1}
+\contentsline {chapter}{\numberline {2}Opis strony internetowej dost\IeC {\k e}pnej z przegl\IeC {\k a}darki}{7}{chapter.2}
+\contentsline {chapter}{\numberline {3}Opis klas bazy danych}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Klasa opisuj\IeC {\k a}ca tabel\IeC {\k e} u\IeC {\.z}ytkownika - nauczyciela}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Klasa opisuj\IeC {\k a}ca tabel\IeC {\k e} kategorii test\IeC {\'o}w}{9}{section.3.2}
+\contentsline {section}{\numberline {3.3}Klasa opisuj\IeC {\k a}ca tabel\IeC {\k e} test\IeC {\'o}w}{9}{section.3.3}
+\contentsline {section}{\numberline {3.4}Klasa opisuj\IeC {\k a}ca tabel\IeC {\k e} wynik\IeC {\'o}w testu}{10}{section.3.4}
+\contentsline {section}{\numberline {3.5}Klasa opisuj\IeC {\k a}ca tabel\IeC {\k e} u\IeC {\.z}ytkownika rozwi\IeC {\k a}zuj\IeC {\k a}cego testy - ucznia}{10}{section.3.5}
+\contentsline {chapter}{\numberline {4}Indeksy i tabele}{13}{chapter.4}
+\contentsline {chapter}{Indeks modu\IeC {\l }\IeC {\'o}w}{15}{section*.2}
+\contentsline {chapter}{Indeks}{17}{section*.3}

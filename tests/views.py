@@ -77,6 +77,7 @@ def results_upload(request):
             return HttpResponse("ERROR:Use POST")
     except:
         print 'exception'
+        print sys.exc_info()
         raise
         return HttpResponse("ERROR: Unhandled exception, contact administrator")
 
@@ -96,6 +97,19 @@ def test_list(request):
 def test_list_public(request):
     tests = Test.objects.filter(password='')
     return render_to_response('tests_list.html', {'tests': tests})
+
+def test_list_all(request):
+    search_term = request.GET.get('search', '')
+    category_name = request.GET.get('cat', '')
+    category, created = Category.objects.get_or_create(name=category_name)
+    if created:
+        tests = []
+    else:
+        if search_term:
+            tests = Test.objects.filter(category=category, title__icontains=search_term)
+        else:
+            tests = Test.objects.filter(category=category)
+    return render_to_response('tests_list_all.html', {'tests': tests})
 
 def test_delete(request, test_id):
     if request.method == "GET":
@@ -145,7 +159,7 @@ def questions_download(request):
         else:# olpc app, test with password
             test_pass = request.POST.get("test-password", '')
             if test.password == test_pass:
-                user_name = request.POST.get("user_name", '')
+                user_name = request.POST.get("user-name", '')
                 testuser, created = TestUser.objects.get_or_create(user_id_unq=user_name, test_id_unq=test_id)
                 if not created:
                     print 'Test requested again'

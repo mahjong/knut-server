@@ -1,0 +1,9 @@
+# Sphinx inventory version 1
+# Project: Serwer Knut
+# Version: 0.1
+knut_server.tests.models mod index.html
+knut_server.tests.models.Test class index.html
+knut_server.tests.models.Result class index.html
+knut_server.tests.models.Category class index.html
+knut_server.tests.models.User class index.html
+knut_server.tests.models.TestUser class index.html
