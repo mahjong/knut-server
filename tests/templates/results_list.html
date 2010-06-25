@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<results xmlns="http://mahjong.rootnode.net/kvml">
+{% for result in results %}
+<result>
+   <id>{{ result.id }}</id>
+   <user-id>{{ result.user_id_unq }}</user-id>
+   <points>{{ result.points }}</points>
+   <points_percentage>{{ result.points_percentage }}</points_percentage>
+   <ts_created>{{ result.ts_created }}</ts_created>
+</result>
+{% endfor %}
+</results>

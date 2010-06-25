@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Knut - Test wiedzy</title>
+</head>
+<body>
+<div style="margin-left:auto; margin-right:auto; width:700px;">
+    <div id="content">
+    <h1>Lista testów</h1>
+    <ul>
+    {% for test in tests %}
+    <li>
+	    <h3>{{ test.title }}</h3>
+	    <div>Opis: {{ test.instructions }}</div>
+	    <div>Wersja: {{ test.version }}</div>
+	    <div>Id: {{ test.id_unq }}</div>
+	</li>
+    {% endfor %}
+    </ul>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<tests xmlns="http://mahjong.rootnode.net/kvml">
+{% for test in tests %}
+<test>
+   <id>{{ test.id }}</id>
+   <title>{{ test.title }}</title>
+   <instructions>{{ test.instructions }}</instructions>
+   <version>{{ test.version }}</version>
+   <password>{{ test.password }}</password>
+   <id_unq>{{ test.id_unq }}</id_unq>
+</test>
+{% endfor %}
+</tests>

@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Serwer Knut - Dokumentacja &mdash; Serwer Knut v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '#',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="Serwer Knut v0.1 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Indeks ogólny"
+             accesskey="I">indeks</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Indeks modułów"
+             accesskey="M">moduły</a> |</li>
+        <li><a href="#">Serwer Knut v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="serwer-knut-dokumentacja">
+<h1>Serwer Knut - Dokumentacja<a class="headerlink" href="#serwer-knut-dokumentacja" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<p>Jest to dokumentacja techniczna przeznaczona dla programistów, którzy chcą zrozumieć jak działa serwer Knuta - repozytorium testów i odpowiedzi. Składa się ona z opisu klas, atrybutów i metod.</p>
+<p>Program został napisany w języku <a class="reference external" href="http://python.org">Python</a>, przy użyciu frameworka <a class="reference external" href="http://www.djangoproject.com/">Django</a>.</p>
+<p>Zawartość:</p>
+<ul>
+<li><p class="first"><a class="reference internal" href="#views"><em>Opis URL/API, ścieżek zasobów i sposobu komunikacji z serwerem</em></a></p>
+</li>
+<li><p class="first"><a class="reference internal" href="#www"><em>Opis strony internetowej dostępnej z przeglądarki</em></a></p>
+</li>
+<li><p class="first"><a class="reference internal" href="#models"><em>Opis klas bazy danych</em></a></p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference internal" href="#models-user"><em>Klasa opisująca tabelę użytkownika - nauczyciela</em></a></li>
+<li><a class="reference internal" href="#models-category"><em>Klasa opisująca tabelę kategorii testów</em></a></li>
+<li><a class="reference internal" href="#models-test"><em>Klasa opisująca tabelę testów</em></a></li>
+<li><a class="reference internal" href="#models-result"><em>Klasa opisująca tabelę wyników testu</em></a></li>
+<li><a class="reference internal" href="#models-testuser"><em>Klasa opisująca tabelę użytkownika rozwiązującego testy - ucznia</em></a></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul class="simple">
+</ul>
+</div>
+<div class="section" id="opis-url-api-sciezek-zasobow-i-sposobu-komunikacji-z-serwerem">
+<span id="views"></span><h1>Opis URL/API, ścieżek zasobów i sposobu komunikacji z serwerem<a class="headerlink" href="#opis-url-api-sciezek-zasobow-i-sposobu-komunikacji-z-serwerem" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<p>Komunikacja z serwerem odbywa sie przy pomocy protokołu HTTP, w szczególności metod GET i POST.</p>
+<p>Metody edytujące testy weryfikują uprawnienia użytkownika za pomocą loginu i hasła, które muszą być przesłane w żądaniu.</p>
+<p>Lista ścieżek zasobów:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference internal" href="#test-upload"><em>/test_upload - zapisuje test na serwerze</em></a></li>
+<li><a class="reference internal" href="#test-list"><em>/test_list - listuje testy użytkownika</em></a></li>
+<li><a class="reference internal" href="#test-list-public"><em>/test_list_public - listuje testy publiczne wszystkich użytkowników.</em></a></li>
+<li><a class="reference internal" href="#test-delete"><em>/test_delete/test_id - usuwa test o podanym id</em></a></li>
+<li><a class="reference internal" href="#questions-download"><em>/questions_download - Metoda zwraca plik z pytaniami do testu</em></a></li>
+<li><a class="reference internal" href="#answers-download"><em>/answers_download - Metoda zwraca plik z odpowiedziami do testu</em></a></li>
+<li><a class="reference internal" href="#user-answers-download"><em>/user_answers_download - Pobiera odpowiedzi ucznia w formacie xml</em></a></li>
+<li><a class="reference internal" href="#results-upload"><em>/results_upload - zapisuje wyniki ucznia na serwerze</em></a></li>
+<li><a class="reference internal" href="#results-list"><em>/results_list - listuje wyniki testu wszystkich uczniów dla podanego testu</em></a></li>
+</ul>
+</blockquote>
+<p>Opis ścieżek zasobów:</p>
+<blockquote>
+<ul id="test-upload">
+<li><p class="first"><strong>/test_upload</strong> - zapisuje test na serwerze. Metoda sprawdza czy użytkownik o podanym loginie i haśle istnieje w bazie danych a następnie zapisuje nowy test do bazy danych i przenosi odpowiednie pliki z pytaniami i odpowiedziami do katalogu &#8220;test_files/nr_testu/&#8221;</p>
+<blockquote>
+<p>Oczekuje na metodę POST zawierającą:</p>
+<ul class="simple">
+<li>Login użytkownika - nauczyciela</li>
+<li>Hasło użytkownika - nauczyciela</li>
+<li>Tytuł testu</li>
+<li>Instrukcje do testu</li>
+<li>Hasło zabezpieczające test przed pobraniem - jęśli test prywatny</li>
+<li>Kategorię testu</li>
+<li>Wersję testu</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul id="test-list">
+<li><p class="first"><strong>/test_list</strong> - listuje testy użytkownika. Metoda zwraca dokument xml z listą testów użytkownika, w szczególności nie pokazuje testów innych użytkowników.</p>
+<blockquote>
+<p>Oczekuje na metodę POST zawierającą:</p>
+<ul class="simple">
+<li>Login użytkownika - nauczyciela</li>
+<li>Hasło użytkownika - nauczyciela</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul id="test-list-public">
+<li><p class="first"><strong>/test_list_public</strong> - listuje testy publiczne wszystkich użytkowników. Metoda zwraca dokument xml z listą wszystkich testów publicznych.</p>
+<blockquote>
+<p>Metoda nie oczekuje na argumenty.</p>
+</blockquote>
+</li>
+</ul>
+<ul id="test-delete">
+<li><p class="first"><strong>/test_delete/&lt;test_id&gt;</strong> - usuwa test o podanym id. Metoda sprawdza czy użytkownik o podanym loginie i haśle istnieje w bazie danych i jest autorem danego testu. Następnie usuwa test z bazy danych i pliki z dysku.</p>
+<blockquote>
+<p>Oczekuje na metodę POST zawierającą:</p>
+<ul class="simple">
+<li>Login użytkownika - nauczyciela</li>
+<li>Hasło użytkownika - nauczyciela</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul id="questions-download">
+<li><p class="first"><strong>/questions_download</strong> - Metoda zwraca plik z pytaniami do testu. Jeśli test jest prywatny sprawdza dodatkowo czy użytkownik (uczeń) podał poprawne hasło testu, lub czy użytkownik (nauczyciel) jest właścicielem testu. Jeśli żądanie wysłane przez ucznia zakończyło się odesłaniem testu, zapisuje tą informacje w bazie danych. Uczeń wysyła więc id testu, swój login i hasło do testu. Jeśli nauczyciel pobiera pytania do edycji to wysyła id testu, swój login i swoje hasło.</p>
+<blockquote>
+<p>Oczekuje na metodę POST zawierającą:</p>
+<ul class="simple">
+<li>Id testu</li>
+<li>Login użytkownika - ucznia lub nauczyciela</li>
+<li>Hasło użytkownika - ucznia lub nauczyciela</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul id="answers-download">
+<li><p class="first"><strong>/answers_download</strong> - Metoda zwraca plik z odpowiedziami do testu. Logika jak w questions_download.</p>
+<blockquote>
+<p>Oczekuje na metodę POST zawierającą:</p>
+<ul class="simple">
+<li>Id testu</li>
+<li>Login użytkownika - ucznia lub nauczyciela</li>
+<li>Hasło użytkownika - ucznia lub nauczyciela</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul id="user-answers-download">
+<li><p class="first"><strong>/user_answers_download</strong> - Pobiera odpowiedzi ucznia w formacie xml. Metoda sprawdza czy użytkownik o podanym loginie i haśle istnieje w bazie danych.</p>
+<blockquote>
+<p>Oczekuje na metodę POST zawierającą:</p>
+<ul class="simple">
+<li>Login użytkownika - nauczyciela</li>
+<li>Hasło użytkownika - nauczyciela</li>
+<li>Id testu</li>
+<li>Id użytkownika - ucznia</li>
+<li>Id odpowiedzi</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul id="results-upload">
+<li><p class="first"><strong>/results_upload</strong> - zapisuje wyniki ucznia na serwerze. Metoda zapisuje login ucznia, id testu i wynik ucznia w bazie danych oraz plik xml z odpowiedziami na dysku w katalogu &#8220;results_files/&lt;id_wyników&gt;/&#8221;.</p>
+<blockquote>
+<p>Oczekuje na metodę POST zawierającą:</p>
+<ul class="simple">
+<li>Login użytkownika - ucznia</li>
+<li>Id testu</li>
+<li>Punkty uzyskane na teście</li>
+<li>Punkty uzyskane na teście procentowo</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul id="results-list">
+<li><p class="first"><strong>/results_list</strong> - listuje wyniki testu wszystkich uczniów dla podanego testu. Metoda sprawdza czy użytkownik (nauczyciel) o podanym loginie i haśle istnieje w bazie danych.</p>
+<blockquote>
+<p>Oczekuje na metodę POST zawierającą:</p>
+<ul class="simple">
+<li>Login użytkownika - nauczyciela</li>
+<li>Hasło użytkownika - nauczyciela</li>
+<li>Id testu</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="opis-strony-internetowej-dostepnej-z-przegladarki">
+<span id="www"></span><h1>Opis strony internetowej dostępnej z przeglądarki<a class="headerlink" href="#opis-strony-internetowej-dostepnej-z-przegladarki" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<p>Strona internetowa programu z opisem działania i możliwością pobrania wszystkich kodu. Użytkownik ma też możliwość przeglądanie testów.</p>
+<blockquote>
+<p>Dostępne podstrony:</p>
+<ul class="simple">
+<li><strong>/</strong> - strona główna programu z podstawowymi informacjami i linkami do programów do pobrania.</li>
+<li><strong>/categories</strong> - strona listująca kategorie testów</li>
+<li><strong>/categories/&lt;category-id&gt;</strong> - strona listująca wszystkie testy w wybranej kategorii</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="module-knut_server.tests.models">
+<span id="models"></span><h1>Opis klas bazy danych<a class="headerlink" href="#module-knut_server.tests.models" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<div class="section" id="klasa-opisujaca-tabele-uzytkownika-nauczyciela">
+<span id="models-user"></span><h2>Klasa opisująca tabelę użytkownika - nauczyciela<a class="headerlink" href="#klasa-opisujaca-tabele-uzytkownika-nauczyciela" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<dl class="class">
+<dt id="knut_server.tests.models.User">
+<em class="property">class </em><tt class="descclassname">knut_server.tests.models.</tt><tt class="descname">User</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#knut_server.tests.models.User" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasa użytkownika wysyłającego testy - nauczyciela</p>
+<p>Opis pól:</p>
+<blockquote>
+<p><strong>login</strong></p>
+<blockquote>
+Login, identyfikator nauczyciela (30 znaków)</blockquote>
+<p><strong>password</strong></p>
+<blockquote>
+Hasło (30 znaków)</blockquote>
+<p><strong>full_name</strong></p>
+<blockquote>
+Imię i nazwisko (100 znaków)</blockquote>
+</blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="klasa-opisujaca-tabele-kategorii-testow">
+<span id="models-category"></span><h2>Klasa opisująca tabelę kategorii testów<a class="headerlink" href="#klasa-opisujaca-tabele-kategorii-testow" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<dl class="class">
+<dt id="knut_server.tests.models.Category">
+<em class="property">class </em><tt class="descclassname">knut_server.tests.models.</tt><tt class="descname">Category</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#knut_server.tests.models.Category" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasa kategori testów</p>
+<p>Opis pól:</p>
+<p><strong>name</strong></p>
+<blockquote>
+Nazwa kategorii (100znaków)</blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="klasa-opisujaca-tabele-testow">
+<span id="models-test"></span><h2>Klasa opisująca tabelę testów<a class="headerlink" href="#klasa-opisujaca-tabele-testow" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<dl class="class">
+<dt id="knut_server.tests.models.Test">
+<em class="property">class </em><tt class="descclassname">knut_server.tests.models.</tt><tt class="descname">Test</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#knut_server.tests.models.Test" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasa testu, dane opisujące test zapisywane są w bazie danych, natomiast pliki z pytaniami i odpowiedziami na dysku.</p>
+<p>Opis pól:</p>
+<blockquote>
+<p><strong>user</strong></p>
+<blockquote>
+Klucz obcy do użytkownika, który wysłał testy</blockquote>
+<p><strong>category</strong></p>
+<blockquote>
+Klucz obcy do kategorii testu</blockquote>
+<p><strong>title</strong></p>
+<blockquote>
+Tytuł testu (30 znaków)</blockquote>
+<p><strong>instructions</strong></p>
+<blockquote>
+Instrukcje do testu (256 znaków)</blockquote>
+<p><strong>password</strong></p>
+<blockquote>
+Hasło testu (30 znaków)</blockquote>
+<p><strong>version</strong></p>
+<blockquote>
+Wersja testu (liczba całkowita)</blockquote>
+<p><strong>id_unq</strong></p>
+<blockquote>
+Unikalne id testu (10 znaków)</blockquote>
+</blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="klasa-opisujaca-tabele-wynikow-testu">
+<span id="models-result"></span><h2>Klasa opisująca tabelę wyników testu<a class="headerlink" href="#klasa-opisujaca-tabele-wynikow-testu" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<dl class="class">
+<dt id="knut_server.tests.models.Result">
+<em class="property">class </em><tt class="descclassname">knut_server.tests.models.</tt><tt class="descname">Result</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#knut_server.tests.models.Result" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasa wyników testu. Wynik punktowy zapisywany jest bazie danych. Lista odpowiedzi udzielonych przez ucznia zapisywana jest na dysku w formacie xml.</p>
+<p>Opis pól:</p>
+<blockquote>
+<p><strong>user_id_unq</strong></p>
+<blockquote>
+Unikalne id użytkownika (30 znaków)</blockquote>
+<p><strong>test_id_unq</strong></p>
+<blockquote>
+Unikalne id testu (10 znaków)</blockquote>
+<p><strong>points</strong></p>
+<blockquote>
+Wynik z testu wyrażony w punktach (liczba zmiennoprzecinkowa)</blockquote>
+<p><strong>points_percentage</strong></p>
+<blockquote>
+Wynik z testu wyrażony w procentach (liczba zmiennoprzecinkowa)</blockquote>
+<p><strong>ts_created</strong></p>
+<blockquote>
+Stempel czasowy</blockquote>
+</blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="klasa-opisujaca-tabele-uzytkownika-rozwiazujacego-testy-ucznia">
+<span id="models-testuser"></span><h2>Klasa opisująca tabelę użytkownika rozwiązującego testy - ucznia<a class="headerlink" href="#klasa-opisujaca-tabele-uzytkownika-rozwiazujacego-testy-ucznia" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<dl class="class">
+<dt id="knut_server.tests.models.TestUser">
+<em class="property">class </em><tt class="descclassname">knut_server.tests.models.</tt><tt class="descname">TestUser</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#knut_server.tests.models.TestUser" title="Stały odnośnik do tej definicji">¶</a></dt>
+<dd><p>Klasa opisująca obiekt rozwiązywanego testu. Zapisuje datę rozpoczęcia i odesłania wyników testu.</p>
+<p>Opis pól:</p>
+<blockquote>
+<p><strong>user_id_unq</strong></p>
+<blockquote>
+Unikalne id użytkownika (30 znaków)</blockquote>
+<p><strong>test_id_unq</strong></p>
+<blockquote>
+Unikalne id testu (10 znaków)</blockquote>
+<p><strong>ts_created</strong></p>
+<blockquote>
+Stempel czasowy</blockquote>
+<p><strong>ts_returned</strong></p>
+<blockquote>
+Stempel czasowy</blockquote>
+</blockquote>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="indeksy-i-tabele">
+<h1>Indeksy i tabele<a class="headerlink" href="#indeksy-i-tabele" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<ul class="simple">
+<li><a class="reference external" href="genindex.html"><em>Index</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="#">Spis treści</a></h3>
+            <ul>
+<li><a class="reference external" href="#">Serwer Knut - Dokumentacja</a><ul>
+</ul>
+</li>
+<li><a class="reference external" href="#opis-url-api-sciezek-zasobow-i-sposobu-komunikacji-z-serwerem">Opis URL/API, ścieżek zasobów i sposobu komunikacji z serwerem</a></li>
+<li><a class="reference external" href="#opis-strony-internetowej-dostepnej-z-przegladarki">Opis strony internetowej dostępnej z przeglądarki</a></li>
+<li><a class="reference external" href="#module-knut_server.tests.models">Opis klas bazy danych</a><ul>
+<li><a class="reference external" href="#klasa-opisujaca-tabele-uzytkownika-nauczyciela">Klasa opisująca tabelę użytkownika - nauczyciela</a></li>
+<li><a class="reference external" href="#klasa-opisujaca-tabele-kategorii-testow">Klasa opisująca tabelę kategorii testów</a></li>
+<li><a class="reference external" href="#klasa-opisujaca-tabele-testow">Klasa opisująca tabelę testów</a></li>
+<li><a class="reference external" href="#klasa-opisujaca-tabele-wynikow-testu">Klasa opisująca tabelę wyników testu</a></li>
+<li><a class="reference external" href="#klasa-opisujaca-tabele-uzytkownika-rozwiazujacego-testy-ucznia">Klasa opisująca tabelę użytkownika rozwiązującego testy - ucznia</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#indeksy-i-tabele">Indeksy i tabele</a></li>
+</ul>
+
+            <h3>Ta strona</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/index.txt"
+                     rel="nofollow">Pokaż źródło</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Szybkie wyszukiwanie</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Szukaj" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Indeks ogólny"
+             >indeks</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Indeks modułów"
+             >moduły</a> |</li>
+        <li><a href="#">Serwer Knut v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2010, Wiktor Idzikowski.
+      Utworzone przy pomocy <a href="http://sphinx.pocoo.org/">Sphinx</a>'a 0.6.5.
+    </div>
+  </body>
+</html>

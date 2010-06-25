@@ -3,7 +3,7 @@
 *.pyc
 *.jpg
 *.jpeg
-*.html
+
 *.sqlite
 .project
 .pydevproject
