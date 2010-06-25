@@ -22,6 +22,7 @@ def test_upload(request):
             nTitle = request.POST.get("title")
             test_old = user[0].test_set.filter(title=nTitle)
             if test_old:
+                # nie usuwam, uwaga promotora
 #                if test_old[0].version < int(request.POST.get("version")):
 #                    default_storage.delete("test_files/%s/questions.tar.bz2"%test_old[0].id)
 #                    default_storage.delete("test_files/%s/answers.xml"%test_old[0].id)
