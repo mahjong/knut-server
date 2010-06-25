@@ -12,3 +12,4 @@ knut.kpf
 settings.txt
 test_files/
 results_files/
+local_settings.py
