@@ -214,36 +214,36 @@ def results_list(request):
         return HttpResponse("ERROR: No test results")
     
 def user_answers_download(request):
-    try:
-        if request.method != "POST":
-            return HttpResponse("ERROR")
-    
-        test_id = request.POST.get("test-id")
-        user_id = request.POST.get("user-id")
-        user_login = request.POST.get("login", '')
-        user_pass = request.POST.get("password", '')
-        results_id = request.POST.get("result-id", '')
-        if not test_id or not user_login or not user_pass or not user_id:
-#            print 'ERROR: login, test-id and password required'
-            return HttpResponse("ERROR: login, test-id and password required")
-        
-        user = User.objects.filter(login=user_login, password=user_pass)
-        if len(user) != 1:
-#            print 'ERROR: User does not exist'
-            return HttpResponse("ERROR: User does not exist")
-        user = user[0]
-        
-        result = Result.objects.get(user_id_unq=user_id, test_id_unq=test_id, pk=results_id)
+#    try:
+    if request.method != "POST":
+        return HttpResponse("ERROR")
 
-        results_filename = "results_files/%s/results.xml" % result.id
-        wrapper = FileWrapper(file(results_filename))
-        response = HttpResponse(wrapper, content_type="aplication/xml")
-        response["Content-Length"] = os.path.getsize(results_filename)
-        return response
-    except:
-#        raise
-#        print 'ERROR: Couldnt find test answers'
-        return HttpResponse("ERROR: No test answers")
+    test_id = request.POST.get("test-id")
+    user_id = request.POST.get("user-id")
+    user_login = request.POST.get("login", '')
+    user_pass = request.POST.get("password", '')
+    results_id = request.POST.get("result-id", '')
+    if not test_id or not user_login or not user_pass or not user_id:
+#            print 'ERROR: login, test-id and password required'
+        return HttpResponse("ERROR: login, test-id and password required")
+    
+    user = User.objects.filter(login=user_login, password=user_pass)
+    if len(user) != 1:
+#            print 'ERROR: User does not exist'
+        return HttpResponse("ERROR: User does not exist")
+    user = user[0]
+    
+    result = Result.objects.get(user_id_unq=user_id, test_id_unq=test_id, pk=results_id)
+
+    results_filename = os.path.join(MEDIA_ROOT, "results_files/%s/results.xml" % result.id)
+    wrapper = FileWrapper(file(results_filename))
+    response = HttpResponse(wrapper, content_type="aplication/xml")
+    response["Content-Length"] = os.path.getsize(results_filename)
+    return response
+#    except:
+##        raise
+##        print 'ERROR: Couldnt find test answers'
+#        return HttpResponse("ERROR: No test answers")
 
 
 def answers_download(request):
