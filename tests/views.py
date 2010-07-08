@@ -4,7 +4,7 @@ from django.core.files.storage import default_storage
 from django.core.servers.basehttp import FileWrapper
 from models import User, Test, Category, Result, TestUser
 from django.template import RequestContext
-from settings import MEDIA_ROOT
+from knut_server.settings import MEDIA_ROOT
 import os
 import string
 import random
