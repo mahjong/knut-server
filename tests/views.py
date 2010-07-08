@@ -123,7 +123,7 @@ def test_delete(request, test_id):
             if test:
                 default_storage.delete("test_files/%s/questions.tar.bz2"%test[0].id)
                 default_storage.delete("test_files/%s/answers.xml"%test[0].id)
-                os.rmdir("test_files/%s"%test[0].id)
+                os.rmdir(os.path.join(MEDIA_ROOT, "test_files/%s"%test[0].id))
                 test[0].delete()
                 return HttpResponse("OK")
             else:
