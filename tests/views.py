@@ -4,6 +4,7 @@ from django.core.files.storage import default_storage
 from django.core.servers.basehttp import FileWrapper
 from models import User, Test, Category, Result, TestUser
 from django.template import RequestContext
+from settings import MEDIA_ROOT
 import os
 import string
 import random
@@ -173,7 +174,7 @@ def questions_download(request):
         send = True
 
     if send:
-        questions_file_name = "test_files/%s/questions.tar.bz2"%test.id
+        questions_file_name = os.path.join(MEDIA_ROOT, "test_files/%s/questions.tar.bz2"%test.id)
         wrapper = FileWrapper(file(questions_file_name))
         response = HttpResponse(wrapper, content_type="aplication/x-gtar")
         response["Content-Length"] = os.path.getsize(questions_file_name)
@@ -279,7 +280,7 @@ def answers_download(request):
         send = True
 
     if send:
-        questions_file_name = "test_files/%s/answers.xml"%test.id
+        questions_file_name = os.path.join(MEDIA_ROOT, "test_files/%s/answers.xml"%test.id)
         wrapper = FileWrapper(file(questions_file_name))
         response = HttpResponse(wrapper, content_type="aplication/xml")
         response["Content-Length"] = os.path.getsize(questions_file_name)
