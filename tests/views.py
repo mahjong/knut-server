@@ -291,9 +291,16 @@ def categories(request):
     return render_to_response('categories.html', {'categories': categories,},
                               context_instance=RequestContext(request))
     
+def index(request):
+    categories = Category.objects.all()
+    return render_to_response('index.html', {'categories': categories,},
+                              context_instance=RequestContext(request))
+    
 def category(request, category_id):
     cat = get_object_or_404(Category, pk=category_id)
     tests = Test.objects.filter(category=cat, password='')
-    return render_to_response('category.html', {'tests': tests,},
+    categories = Category.objects.all()
+    return render_to_response('category.html', {'tests': tests,
+                                                'categories': categories},
                               context_instance=RequestContext(request))
 

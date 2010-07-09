@@ -1,20 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head>
-<title>Knut - Test wiedzy</title>
-</head>
-<body>
-<div style="margin-left:auto; margin-right:auto; width:700px;">
-    <div id="content">
-    <h1>Knut - Testy wiedzy</h1>
-    Aby rozpoczac prace z Knutem pobierz edytor testow.
-    <a href="/files/knut.txt">Knut wersja 0.0.1</a>
-    <div style="margin-top:50px; margin-left:180px;">
-        <a href="/categories">Katalog testow</a>
-    </div>
-    </div>
-</div>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+		<h2>Knut - Testy wiedzy</h2>
+		<p>Aby rozpocząć rozwiązywanie testów pobierz i zainstaluj program <a href="/apps/Knut-1.xo">Knut Activity</a> na platformę sugar.</p>
+		<p>Jeśli chcesz układać testy pobierz i zainstaluj program <a href="/apps/knutapp_0.1-1_all.deb">Knut App</a>.</p>
+		<p>Do współdzielenia testów na serwerze knutest.org wymagane jest konto. W celu założenia nowego konta napisz do <a href="mailto:wiktor.idzikowski@gmail.com">Administratora</a>.</p>
+{% endblock %}

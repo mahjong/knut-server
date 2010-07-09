@@ -14,5 +14,5 @@ urlpatterns = patterns('',
     (r'^results_list/$', 'knut_server.tests.views.results_list'),
     (r'^categories/$', 'knut_server.tests.views.categories'),
     (r'^categories/(?P<category_id>.*)', 'knut_server.tests.views.category'),
-    (r'^$', direct_to_template, {'template': 'index.html'}),
+    (r'^$', 'knut_server.tests.views.index'),
 )

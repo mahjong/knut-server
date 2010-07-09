@@ -1,13 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-<head>
-<title>Knut - Test wiedzy</title>
-</head>
-<body>
-<div style="margin-left:auto; margin-right:auto; width:700px;">
-    <div id="content">
-    <h1>Lista testów</h1>
+{% extends "base.html" %}
+{% block content %}
+    {% if tests %}
+	<h1>Lista testów</h1>
     <ul>
     {% for test in tests %}
     <li>
@@ -18,8 +12,7 @@
 	</li>
     {% endfor %}
     </ul>
-    </div>
-</div>
-
-</body>
-</html>
+	{% else %}
+	<h1>Brak testów publicznych w tej kategorii</h1>
+	{% endif %}
+{% endblock %}
