@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Witamy w Podręczniku użytkownika serwera knut &mdash; Podręcznik użytkownika serwera knut v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="Podręcznik użytkownika serwera knut v0.1 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Indeks ogólny"
+             accesskey="I">indeks</a></li>
+        <li><a href="#">Podręcznik użytkownika serwera knut v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="witamy-w-podreczniku-uzytkownika-serwera-knut">
+<h1>Witamy w Podręczniku użytkownika serwera knut<a class="headerlink" href="#witamy-w-podreczniku-uzytkownika-serwera-knut" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+</div>
+<div class="section" id="wprowadzenie">
+<span id="id1"></span><h1>Wprowadzenie<a class="headerlink" href="#wprowadzenie" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<p>Podręcznik ten jest przygotowany dla użytkownika i administratora serwera testów knut. Opisuje on zagadnienia związane z zarządzaniem informacjami  użytkowników edytora i programu do rozwiązywania testów.</p>
+<p>Serwer knut to darmowe oprogramowanie służące do współdzielenia testów i wyników.
+Umożliwia on zarządzanie testami, wynikami i kontami użytkowników.</p>
+<p>Manipulacja testami powinna być prowadzona za pośrednictwem edytora testów. Panel administracyjny serwera testów pozwala na edycje informacji o testach i wyników testów, ale w normalnym użytkowaniu nie powinien być wykorzystywany. Jedyna funkcją, którą administrator powinien się zajmować w normalnym trybie pracy jest zarządzanie kontami użytkowników edytora testów.</p>
+<dl class="docutils">
+<dt>Możliwosći serwera:</dt>
+<dd><ul class="first last simple">
+<li>Udostępnianie testów i wyników (przeglądanie, pobieranie i udostępnianie)</li>
+<li>Tworzenie i modyfikowanie kont użytkowników</li>
+<li>Zarządzanie testami</li>
+<li>Zarządzanie wynikami i odpowiedziami uczniów</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="wymagania-systemowe">
+<span id="id2"></span><h2>Wymagania systemowe<a class="headerlink" href="#wymagania-systemowe" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<blockquote>
+<ul class="simple">
+<li>zainstalowane Django w wersji 1.1+, Python 2.5 lub 2.6 i relacyjna baza danych(np. MySQL lub PostgreSQL)</li>
+<li>minimum 30MB pamięci RAM</li>
+<li>conajmniej 100 MB miejsca na dysku twardym</li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="instalacja-programu">
+<span id="id3"></span><h2>Instalacja programu<a class="headerlink" href="#instalacja-programu" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<p>Kod serwera można pobrać z repozytorium na github.com (<a class="reference external" href="http://github.com/mahjong/knut-server">http://github.com/mahjong/knut-server</a> lub przez stronę <a class="reference external" href="http://knutest.org">http://knutest.org</a>). Najlepiej jest sklonować repozytorium za pomocą systemu kontroli wersji Git. Ułatwi to aktualizację oprogramowania do najnowszej wersji.</p>
+<p>Pierwszym krokiem po pobraniu kodu jest dostosowanie ustawień w pliku settings.py a w szczególności ustawień bazy danych.</p>
+<p>Przykładowe ustawienia dla MySQL:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">DATABASE_ENGINE</span> <span class="o">=</span> <span class="s">&#39;mysql&#39;</span>
+<span class="n">DATABASE_NAME</span> <span class="o">=</span> <span class="s">&#39;knutdb&#39;</span>
+<span class="n">DATABASE_USER</span> <span class="o">=</span> <span class="s">&#39;mojlogin&#39;</span>
+<span class="n">DATABASE_PASSWORD</span> <span class="o">=</span> <span class="s">&#39;qwerty&#39;</span>
+</pre></div>
+</div>
+<p>Kolejnym krokiem jest utworzenie tabel w bazie danych poleceniem <tt class="docutils literal"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">syncdb</span></tt>. Django utworzy wtedy wymaganą strukturę i na koniec pozwoli założyć konto administratora. Konto to będzie potrzebne przy administrowaniu strony.</p>
+</div>
+</div>
+<div class="section" id="zarzadzanie-serwerem">
+<span id="id4"></span><h1>Zarządzanie serwerem<a class="headerlink" href="#zarzadzanie-serwerem" title="Stały odnośnik do tego nagłówka">¶</a></h1>
+<p>Serwer knut oprócz obsługiwania współdzielenia testów posiada stronę www prezentującą projekt oraz umożliwiającą przeglądanie testów. Dodatkowo administrator serwera ma dostęp do panelu administracyjnego dzięki czemu może ręcznie dokonywać zmian.</p>
+<p>Jednakże w normalnym użytkowaniu serwera, jedyną czynnością, która powinna być wykonywana przez administratora  jest zarządzanie kontami użytkowników edytora testów. Pozostałe możliwości serwera są udostępnione przez API i dostępne z poziomu programów klienckich (np. edytora testów knut i programu do rozwiązywania testów).</p>
+<div class="section" id="interfejs-www">
+<span id="id5"></span><h2>Interfejs WWW<a class="headerlink" href="#interfejs-www" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<p>Strona WWW projektu</p>
+<blockquote>
+<img alt="_images/StronaGlowna.png" src="_images/StronaGlowna.png" style="height: 300px;" />
+</blockquote>
+<p>Strona WWW prezentuje najważniejsze informacje o projekcie, pozwala na pobranie i zobaczenie kodu źródłowego programów oraz umożliwia przeglądanie opisów testów dostępnych na serwerze.</p>
+</div>
+<div class="section" id="panel-administracyjny">
+<span id="id6"></span><h2>Panel Administracyjny<a class="headerlink" href="#panel-administracyjny" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<p>Panel administracyjny wymaga logowania. Domyślnie logowanie odbywa się na stronie <a class="reference external" href="http://adres_strony/admin/">http://adres_strony/admin/</a> np. <a class="reference external" href="http://knutest.org/admin/">http://knutest.org/admin/</a>.</p>
+<p>Logowanie do panelu administracyjnego</p>
+<a class="reference internal image-reference" href="_images/Logowanie.png"><img alt="_images/Logowanie.png" src="_images/Logowanie.png" style="width: 179.0px; height: 118.0px;" /></a>
+<p>Po podaniu prawidłowego loginu i hasła nastąpi przekierowanie do panelu administracyjnego.</p>
+<p>Panel administracyjny</p>
+<img alt="_images/Administracja.png" src="_images/Administracja.png" />
+<dl class="docutils">
+<dt>Panel administracyjny podzielony jest na 2 sekcje:</dt>
+<dd><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">Auth</span></tt> - pozwala na zarządzanie administratorami serwera. Mamy możliwość definiowania grup i ich uprawnień</li>
+<li><tt class="docutils literal"><span class="pre">Tests</span></tt> - umożliwia zarządzanie testami a w szczególności zarządzanie użytkownikami edytora testów</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="zarzadzanie-uzytkownikami-edytora-testow">
+<span id="zarzadzanie-uzytkownikami"></span><h2>Zarządzanie użytkownikami edytora testów<a class="headerlink" href="#zarzadzanie-uzytkownikami-edytora-testow" title="Stały odnośnik do tego nagłówka">¶</a></h2>
+<p>Zarządzanie użytkownikami edytora testów jest możliwe po kliknięciu na <tt class="docutils literal"><span class="pre">Użytkownicy</span></tt> w sekcji <tt class="docutils literal"><span class="pre">Tests</span></tt> panelu administracyjnego. Wyświetli się lista użytkowników.</p>
+<p>Lista użytkowników edytora testów</p>
+<blockquote>
+<img alt="_images/ListaUzytkownikow.png" src="_images/ListaUzytkownikow.png" style="height: 300px;" />
+</blockquote>
+<p>Z tej strony mamy możliwość edycji istniejących użytkowników oraz tworzenie nowych.</p>
+<div class="section" id="dodawanie-uzytkownika">
+<h3>Dodawanie użytkownika<a class="headerlink" href="#dodawanie-uzytkownika" title="Stały odnośnik do tego nagłówka">¶</a></h3>
+<dl class="docutils">
+<dt>Po kliknięciu <tt class="docutils literal"><span class="pre">Dodaj</span> <span class="pre">Użytkownika</span></tt> na stronie z listą użytkowników pojawi się formularz z 3 polami:</dt>
+<dd><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">Nazwa</span> <span class="pre">użytkownika</span></tt> - login potrzebny do weryfikacji konta</li>
+<li><tt class="docutils literal"><span class="pre">Hasło</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Imię</span> <span class="pre">i</span> <span class="pre">nazwisko</span></tt> - wyświetlana nazwa użytkownika</li>
+</ul>
+</dd>
+</dl>
+<p>Dodawanie nowego użytkownika</p>
+<blockquote>
+<img alt="_images/DodajUzytkownika.png" src="_images/DodajUzytkownika.png" style="height: 300px;" />
+</blockquote>
+<dl class="docutils">
+<dt>Po uzupełnieniu wszystkich pól należy zapisać dane. Mamy do wyboru 3 przyciski:</dt>
+<dd><ul class="first last simple">
+<li><tt class="docutils literal"><span class="pre">Zapisz</span> <span class="pre">i</span> <span class="pre">dodaj</span> <span class="pre">nowe</span></tt> - zapisuje wprowadzone dane i przekierowuje do nowego, pustego formularza dodawania użytkownika</li>
+<li><tt class="docutils literal"><span class="pre">Zapisz</span> <span class="pre">i</span> <span class="pre">kontynuuj</span> <span class="pre">edycję</span></tt> - zapisuje wprowadzone dane i zostaje na bierzącej stronie</li>
+<li><tt class="docutils literal"><span class="pre">Zapisz</span></tt> - po zapisaniu wprowadzonych danych przekierowuje do listy użytkowników edytora testów</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="edycja-uzytkownika">
+<h3>Edycja użytkownika<a class="headerlink" href="#edycja-uzytkownika" title="Stały odnośnik do tego nagłówka">¶</a></h3>
+<p>Aby edytować istniejącego użytkownika należy kliknąć na imię i nazwisko z listy użytkowników edytora testów. Pojawi się wtedy okno edycji.</p>
+<p>Edycja użytkownika</p>
+<img alt="_images/EdycjaUzytkownika.png" src="_images/EdycjaUzytkownika.png" style="height: 300px;" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Spis treści</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Witamy w Podręczniku użytkownika serwera knut</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#wprowadzenie">Wprowadzenie</a><ul>
+<li><a class="reference internal" href="#wymagania-systemowe">Wymagania systemowe</a></li>
+<li><a class="reference internal" href="#instalacja-programu">Instalacja programu</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#zarzadzanie-serwerem">Zarządzanie serwerem</a><ul>
+<li><a class="reference internal" href="#interfejs-www">Interfejs WWW</a></li>
+<li><a class="reference internal" href="#panel-administracyjny">Panel Administracyjny</a></li>
+<li><a class="reference internal" href="#zarzadzanie-uzytkownikami-edytora-testow">Zarządzanie użytkownikami edytora testów</a><ul>
+<li><a class="reference internal" href="#dodawanie-uzytkownika">Dodawanie użytkownika</a></li>
+<li><a class="reference internal" href="#edycja-uzytkownika">Edycja użytkownika</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>Ta strona</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Pokaż źródło</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Szybkie wyszukiwanie</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Szukaj" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Wprowadź szukany termin lub nazwę modułu, klasy lub funkcji.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Nawigacja</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Indeks ogólny"
+             >indeks</a></li>
+        <li><a href="#">Podręcznik użytkownika serwera knut v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Wiktor Idzikowski.
+      Utworzone przy pomocy <a href="http://sphinx.pocoo.org/">Sphinx</a>'a 1.0.1.
+    </div>
+  </body>
+</html>
