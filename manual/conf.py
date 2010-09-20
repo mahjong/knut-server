@@ -178,7 +178,7 @@ htmlhelp_basename = 'Podrcznikuytkownikaserweraknutdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Podrcznikuytkownikaserweraknut.tex', u'Podręcznik użytkownika serwera knut Dokumentacja',
+  ('index', 'Podrcznikuytkownikaserweraknut.tex', u'Podręcznik użytkownika serwera knut',
    u'Wiktor Idzikowski', 'manual'),
 ]
 
@@ -211,6 +211,6 @@ latex_show_pagerefs = True
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'podrcznikuytkownikaserweraknut', u'Podręcznik użytkownika serwera knut Dokumentacja',
+    ('index', 'podrcznikuytkownikaserweraknut', u'Podręcznik użytkownika serwera knut',
      [u'Wiktor Idzikowski'], 1)
 ]
