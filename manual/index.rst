@@ -13,7 +13,7 @@ Wprowadzenie
 
 Podręcznik ten jest przygotowany dla użytkownika i administratora serwera testów knut. Opisuje on zagadnienia związane z zarządzaniem informacjami  użytkowników edytora i programu do rozwiązywania testów.
 
-Serwer knut to darmowe oprogramowanie służące do współdzielenia testów i wyników.
+Serwer Knut to darmowe oprogramowanie służące do współdzielenia testów i wyników.
 Umożliwia on zarządzanie testami, wynikami i kontami użytkowników.
 
 Manipulacja testami powinna być prowadzona za pośrednictwem edytora testów. Panel administracyjny serwera testów pozwala na edycje informacji o testach i wyników testów, ale w normalnym użytkowaniu nie powinien być wykorzystywany. Jedyna funkcją, którą administrator powinien się zajmować w normalnym trybie pracy jest zarządzanie kontami użytkowników edytora testów.
@@ -28,10 +28,20 @@ Możliwosći serwera:
 	
 Wymagania systemowe
 -------------------
+
+|
 		
 	*	zainstalowane Django w wersji 1.1+, Python 2.5 lub 2.6 i relacyjna baza danych(np. MySQL lub PostgreSQL)
 	*	minimum 30MB pamięci RAM
 	*	conajmniej 100 MB miejsca na dysku twardym 
+
+
+|
+|
+|
+|
+|
+
 
 .. _instalacja-programu:
 
@@ -100,12 +110,22 @@ Panel administracyjny podzielony jest na 2 sekcje:
 	*	``Auth`` - pozwala na zarządzanie administratorami serwera. Mamy możliwość definiowania grup i ich uprawnień
 	*	``Tests`` - umożliwia zarządzanie testami a w szczególności zarządzanie użytkownikami edytora testów
 
+|
+|
+|
+|
+|
+|
+|
+
+
 .. _zarzadzanie-uzytkownikami:
 
 Zarządzanie użytkownikami edytora testów
 ----------------------------------------
 
 Zarządzanie użytkownikami edytora testów jest możliwe po kliknięciu na ``Użytkownicy`` w sekcji ``Tests`` panelu administracyjnego. Wyświetli się lista użytkowników.
+
 
 Lista użytkowników edytora testów
 

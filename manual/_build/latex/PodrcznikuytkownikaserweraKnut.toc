@@ -1,0 +1,10 @@
+\select@language {polish}
+\contentsline {chapter}{\numberline {1}Wprowadzenie}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Wymagania systemowe}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Instalacja programu}{2}{section.1.2}
+\contentsline {chapter}{\numberline {2}Zarz\IeC {\k a}dzanie serwerem}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Interfejs WWW}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Panel Administracyjny}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Zarz\IeC {\k a}dzanie u\IeC {\.z}ytkownikami edytora test\IeC {\'o}w}{5}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Dodawanie u\IeC {\.z}ytkownika}{5}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Edycja u\IeC {\.z}ytkownika}{6}{subsection.2.3.2}

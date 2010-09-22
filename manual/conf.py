@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Podręcznik użytkownika serwera knut documentation build configuration file, created by
+# Podręcznik użytkownika serwera Knut documentation build configuration file, created by
 # sphinx-quickstart on Sat Aug 21 11:20:09 2010.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Podręcznik użytkownika serwera knut'
+project = u'Podręcznik użytkownika serwera Knut'
 copyright = u'2010, Wiktor Idzikowski'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -164,7 +164,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Podrcznikuytkownikaserweraknutdoc'
+htmlhelp_basename = 'PodrcznikuytkownikaserweraKnutdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -178,7 +178,7 @@ htmlhelp_basename = 'Podrcznikuytkownikaserweraknutdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'Podrcznikuytkownikaserweraknut.tex', u'Podręcznik użytkownika serwera knut',
+  ('index', 'PodrcznikuytkownikaserweraKnut.tex', u'Podręcznik użytkownika serwera Knut',
    u'Wiktor Idzikowski', 'manual'),
 ]
 
@@ -211,6 +211,6 @@ latex_show_pagerefs = True
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'podrcznikuytkownikaserweraknut', u'Podręcznik użytkownika serwera knut',
+    ('index', 'podrcznikuytkownikaserweraKnut', u'Podręcznik użytkownika serwera Knut',
      [u'Wiktor Idzikowski'], 1)
 ]

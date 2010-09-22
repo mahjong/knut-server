@@ -1,8 +1,8 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.7.30)  22 SEP 2010 02:50
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.7.30)  22 SEP 2010 02:53
 entering extended mode
  %&-line parsing enabled.
-**Podrcznikuytkownikaserweraknut.tex
-(./Podrcznikuytkownikaserweraknut.tex
+**PodrcznikuytkownikaserweraKnut.tex
+(./PodrcznikuytkownikaserweraKnut.tex
 LaTeX2e <2005/12/01>
 Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, loaded.
@@ -691,12 +691,12 @@ File: hpdftex.def 2007/02/07 v6.75r Hyperref driver for pdfTeX
 \Fld@listcount=\count118
 ))
 \@indexfile=\write5
-\openout5 = `Podrcznikuytkownikaserweraknut.idx'.
+\openout5 = `PodrcznikuytkownikaserweraKnut.idx'.
 
 
-Writing index file Podrcznikuytkownikaserweraknut.idx
-(./Podrcznikuytkownikaserweraknut.aux)
-\openout1 = `Podrcznikuytkownikaserweraknut.aux'.
+Writing index file PodrcznikuytkownikaserweraKnut.idx
+(./PodrcznikuytkownikaserweraKnut.aux)
+\openout1 = `PodrcznikuytkownikaserweraKnut.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 105.
 LaTeX Font Info:    ... okay on input line 105.
@@ -750,9 +750,9 @@ Package: refcount 2006/02/20 v3.0 Data extraction from references (HO)
 LaTeX Info: Redefining \ref on input line 105.
 LaTeX Info: Redefining \pageref on input line 105.
 
-(./Podrcznikuytkownikaserweraknut.out) (./Podrcznikuytkownikaserweraknut.out)
+(./PodrcznikuytkownikaserweraKnut.out) (./PodrcznikuytkownikaserweraKnut.out)
 \@outlinefile=\write6
-\openout6 = `Podrcznikuytkownikaserweraknut.out'.
+\openout6 = `PodrcznikuytkownikaserweraKnut.out'.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 108--108
@@ -777,12 +777,12 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2
 
-] (./Podrcznikuytkownikaserweraknut.toc
+] (./PodrcznikuytkownikaserweraKnut.toc
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 2.
 )
 \tf@toc=\write7
-\openout7 = `Podrcznikuytkownikaserweraknut.toc'.
+\openout7 = `PodrcznikuytkownikaserweraKnut.toc'.
 
 
 Adding blank page after the table of contents.
@@ -813,7 +813,7 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 
 
 ]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 162.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 168.
 
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
@@ -837,49 +837,48 @@ File: Administracja.png Graphic file (type png)
 
 <use Administracja.png>
 File: Administracja.png Graphic file (type png)
- <use Administracja.png>
-<ListaUzytkownikow.png, id=84, 780.9175pt x 297.11pt>
+ <use Administracja.png> [4 <./Logowanie.png (PNG copy)> <./Administracja.png>]
+ <ListaUzytkownikow.png, id=89, 780.9175pt x 297.11pt>
 File: ListaUzytkownikow.png Graphic file (type png)
 
 <use ListaUzytkownikow.png>
 File: ListaUzytkownikow.png Graphic file (type png)
- <use ListaUzytkownikow.png> [4 <./Logowanie.png (PNG copy)> <./Administracja.p
-ng>]
+ <use ListaUzytkownikow.png>
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 229.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 242.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 231.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 244.
 
 <DodajUzytkownika.png, id=90, 900.36375pt x 304.13625pt>
 File: DodajUzytkownika.png Graphic file (type png)
 
 <use DodajUzytkownika.png>
 File: DodajUzytkownika.png Graphic file (type png)
- <use DodajUzytkownika.png>
-<EdycjaUzytkownika.png, id=91, 903.375pt x 300.12125pt>
+ <use DodajUzytkownika.png> [5 <./ListaUzytkownikow.png (PNG copy)> <./DodajUzy
+tkownika.png (PNG copy)>]
+<EdycjaUzytkownika.png, id=97, 903.375pt x 300.12125pt>
 File: EdycjaUzytkownika.png Graphic file (type png)
 
 <use EdycjaUzytkownika.png>
 File: EdycjaUzytkownika.png Graphic file (type png)
- <use EdycjaUzytkownika.png> [5 <./ListaUzytkownikow.png (PNG copy)> <./DodajUz
-ytkownika.png (PNG copy)>]
-(./Podrcznikuytkownikaserweraknut.ind) [6 <./EdycjaUzytkownika.png (PNG copy)>]
-(./Podrcznikuytkownikaserweraknut.aux) ) 
+ <use EdycjaUzytkownika.png>
+(./PodrcznikuytkownikaserweraKnut.ind) [6 <./EdycjaUzytkownika.png (PNG copy)>]
+(./PodrcznikuytkownikaserweraKnut.aux) ) 
 Here is how much of TeX's memory you used:
- 6586 strings out of 95086
- 85581 string characters out of 1183255
+ 6590 strings out of 95086
+ 85631 string characters out of 1183255
  150183 words of memory out of 1500000
- 9593 multiletter control sequences out of 10000+50000
+ 9597 multiletter control sequences out of 10000+50000
  54541 words of font info for 62 fonts, out of 1200000 for 2000
  29 hyphenation exceptions out of 8191
- 34i,12n,45p,429b,438s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 34i,12n,45p,429b,415s stack positions out of 5000i,500n,6000p,200000b,5000s
 {/usr/share/texmf-texlive/fonts/enc/dvi
 ps/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></u
 sr/share/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-tex
 live/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-texlive/fonts/type1/
 urw/helvetic/uhvbo8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a
 .pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb>
-Output written on Podrcznikuytkownikaserweraknut.pdf (10 pages, 257542 bytes).
+Output written on PodrcznikuytkownikaserweraKnut.pdf (10 pages, 257745 bytes).
 PDF statistics:
  131 PDF objects out of 1000 (max. 8388607)
  20 named destinations out of 1000 (max. 131072)
